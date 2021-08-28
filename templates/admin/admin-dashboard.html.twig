@@ -1,0 +1,17 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Administration</h1>
+        <p class="lead"> Bienvenue dans l'interface d'administration de votre site web  </p>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 alert-info">
+                <span class="display-3"> {{countAllPropositions}} </span> Idées d’employés existantes
+            </div>
+            <div class="col-6 alert-success">
+                <span class="display-3"> {{countNoPropositions}} </span> Nouvelles idées générées
+            </div>
+        </div>
+    </div>
+{% endblock %}
