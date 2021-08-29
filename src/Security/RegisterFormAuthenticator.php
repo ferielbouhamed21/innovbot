@@ -3,16 +3,17 @@
 
 namespace App\Security;
 use App\Entity\User;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 class RegisterFormAuthenticator
 {
-    private  $entityManager;
-    public function __construct( EntityManagerInterface $entityManager)
+    private  $entityManager, $passwordHasher;
+    public function __construct( EntityManagerInterface $entityManager, PasswordHasherInterface  $passwordHasher)
     {
         $this->entityManager = $entityManager;
+        $this->passwordHasher = $passwordHasher;
     }
 
     public function createAccount(Request $request): array
@@ -42,8 +43,9 @@ class RegisterFormAuthenticator
         else {
             $user = new User();
             $user->setUuid($credentials['username'])
-                ->setPassword($credentials['password'])
+                ->setPassword($this->passwordHasher->hash($credentials['password']))
                 ->setEmail($credentials['email']);
+            //dd($user);
             $this->entityManager->persist($user);
             $this->entityManager->flush();
             $message = "Your account has been created!";

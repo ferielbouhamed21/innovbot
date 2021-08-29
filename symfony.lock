@@ -100,6 +100,12 @@
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
+    "laminas/laminas-json": {
+        "version": "3.2.0"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.3.0"
+    },
     "monolog/monolog": {
         "version": "2.3.2"
     },
@@ -108,6 +114,9 @@
     },
     "nikic/php-parser": {
         "version": "v4.12.0"
+    },
+    "ob/highcharts-bundle": {
+        "version": "1.7"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
