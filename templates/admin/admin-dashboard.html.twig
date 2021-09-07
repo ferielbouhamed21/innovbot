@@ -1,17 +1,28 @@
 {% extends '@EasyAdmin/layout.html.twig' %}
-
 {% block content %}
+
     <div class="jumbotron">
         <h1 class="display-4">Administration</h1>
-        <p class="lead"> Bienvenue dans l'interface d'administration de votre site web  </p>
+        <p class="lead"> Bienvenue dans l'interface d'administration de votre site web </p>
         <div class="container">
             <div class="row">
                 <div class="col-6 alert-info">
-                <span class="display-3"> {{countAllPropositions}} </span> Idées d’employés existantes
-            </div>
-            <div class="col-6 alert-success">
-                <span class="display-3"> {{countNoPropositions}} </span> Nouvelles idées générées
+                    <span class="display-3"> {{ countAllPropositions }} </span> Idées d’employés existantes
+                </div>
+                <div class="col-6 alert-success">
+                    <span class="display-3"> {{ countNoPropositions }} </span> Nouvelles idées générées
+                </div>
             </div>
         </div>
+        <div id="piechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+
+
 {% endblock %}

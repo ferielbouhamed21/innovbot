@@ -5,12 +5,13 @@ namespace App\Security;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class RegisterFormAuthenticator
 {
     private  $entityManager, $passwordHasher;
-    public function __construct( EntityManagerInterface $entityManager, PasswordHasherInterface  $passwordHasher)
+    public function __construct( EntityManagerInterface $entityManager, UserPasswordHasherInterface  $passwordHasher)
     {
         $this->entityManager = $entityManager;
         $this->passwordHasher = $passwordHasher;
@@ -42,9 +43,10 @@ class RegisterFormAuthenticator
 //        }
         else {
             $user = new User();
-            $user->setUuid($credentials['username'])
-                ->setPassword($this->passwordHasher->hash($credentials['password']))
-                ->setEmail($credentials['email']);
+            $user->setUsername($credentials['username'])
+                ->setPassword($this->passwordHasher->hashPassword($user,$credentials['password']))
+                ->setEmail($credentials['email'])
+                ->setRoles(["ROLE_USER"]);
             //dd($user);
             $this->entityManager->persist($user);
             $this->entityManager->flush();

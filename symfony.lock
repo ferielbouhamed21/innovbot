@@ -1,4 +1,7 @@
 {
+    "composer/installers": {
+        "version": "v2.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.2"
     },
@@ -582,6 +585,9 @@
     },
     "symfony/uid": {
         "version": "v5.3.3"
+    },
+    "symfony/ux-chartjs": {
+        "version": "v1.3.0"
     },
     "symfony/validator": {
         "version": "4.3",
